@@ -3,11 +3,10 @@ import Groq from 'groq-sdk'
 
 export const dynamic = 'force-dynamic'
 
-const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY || 'MISSING_KEY'
-})
-
 export async function POST(req: Request) {
+    const groq = new Groq({
+        apiKey: process.env.GROQ_API_KEY || 'MISSING_KEY'
+    })
     try {
         const { text, targetLang } = await req.json()
 

@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-export const dynamic = 'force-dynamic'
 import Groq from 'groq-sdk'
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+export const dynamic = 'force-dynamic'
 
 const LOCALE_NAMES: Record<string, string> = {
     en: 'English', hi: 'Hindi', te: 'Telugu', ta: 'Tamil', mr: 'Marathi',
 }
 
 export async function POST(req: NextRequest) {
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY || 'MISSING_KEY' })
     try {
         const { subject, grade = '10', language = 'en' } = await req.json()
         if (!subject) return NextResponse.json({ error: 'Subject required' }, { status: 400 })
