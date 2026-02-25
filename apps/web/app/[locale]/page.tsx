@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { unstable_setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
 import { Globe, Mic, Zap, BarChart2, ShieldCheck, BookOpenCheck } from 'lucide-react'
 
@@ -16,6 +17,7 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: stri
 
 // Locale is passed via Next.js [locale] dynamic param
 export default function HomePage({ params }: { params: { locale: string } }) {
+    unstable_setRequestLocale(params.locale)
     const t = useTranslations('hero')
     const tBtn = useTranslations('buttons')
     const tFeat = useTranslations('features')

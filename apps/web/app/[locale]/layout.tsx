@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { locales } from '@/i18n'
 import type { Metadata } from 'next'
@@ -27,7 +27,8 @@ export default async function LocaleLayout({ children, params }: Props) {
 
     if (!locales.includes(locale as any)) notFound()
 
-    // getMessages() is fine in async Server Components
+    unstable_setRequestLocale(locale)
+
     const messages = await getMessages()
 
     return (
