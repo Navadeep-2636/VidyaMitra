@@ -51,18 +51,15 @@ export default function DashboardPage() {
 
     useEffect(() => {
         const initPdf = async () => {
-            console.log('[PDF.js] Starting initialization...')
             try {
                 // Use legacy build for better compatibility with Next.js/Webpack
                 const pdfjs = await import('pdfjs-dist/legacy/build/pdf.min.mjs')
-                console.log('[PDF.js] Module imported:', Object.keys(pdfjs))
 
                 // Use the local worker (copied from legacy/build)
                 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js'
 
                 pdfjsRef.current = pdfjs
                 setPdfjsLoaded(true)
-                console.log('[PDF.js] Initialization successful')
             } catch (err) {
                 console.error('[PDF.js] Initialization failed:', err)
                 setError('Failed to load PDF library. Please refresh the page.')
@@ -121,7 +118,6 @@ export default function DashboardPage() {
     }, [targetTranslateLang, isTranslationModalOpen, originalSelectionText])
 
     const extractTextFromPDF = async (file: File) => {
-        console.log('Extracting text from PDF:', file.name)
         if (!pdfjsRef.current) {
             console.error('PDF.js not initialized yet')
             setError('PDF.js is still loading. Please try again in a moment.')
@@ -131,17 +127,14 @@ export default function DashboardPage() {
         setIsExtracting(true)
         setError(null)
         try {
-            console.log('[PDF.js] Starting extraction...')
             const getDocument = pdfjs.getDocument || (pdfjs.default && pdfjs.default.getDocument)
             if (!getDocument) {
                 console.error('[PDF.js] getDocument not found in:', Object.keys(pdfjs))
                 throw new Error('PDF library structure mismatch. Please try refreshing.')
             }
             const arrayBuffer = await file.arrayBuffer()
-            console.log('[PDF.js] ArrayBuffer loaded, size:', arrayBuffer.byteLength)
             const loadingTask = getDocument({ data: arrayBuffer })
             const pdf = await loadingTask.promise
-            console.log('[PDF.js] PDF loaded, pages:', pdf.numPages)
             let fullText = ''
             for (let i = 1; i <= pdf.numPages; i++) {
                 const page = await pdf.getPage(i)
@@ -151,7 +144,6 @@ export default function DashboardPage() {
             }
             setPastedText(fullText)
             if (!topic || topic === '') setTopic(file.name.replace('.pdf', ''))
-            console.log('[PDF.js] Extraction finished, characters:', fullText.length)
         } catch (err: any) {
             console.error('PDF extraction failed:', err)
             if (err.name === 'PasswordException') {

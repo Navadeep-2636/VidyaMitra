@@ -10,7 +10,7 @@ export async function POST(req: Request) {
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || 'a25cc1fdefmshe048a76534615c9p17b4e4jsn7d0a064392db',
+                'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || '',
                 'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
             }
         })

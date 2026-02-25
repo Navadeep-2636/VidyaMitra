@@ -40,39 +40,11 @@ export function useNarrator() {
         setIsSpeaking(true)
         setIsPaused(false)
 
-        if (hasLocalVoice && (lang === 'en' || lang === 'hi')) {
-            const utterance = new SpeechSynthesisUtterance(sanitizedText)
-            utterance.lang = targetLang
-            utterance.onend = () => { setIsSpeaking(false); setIsPaused(false) }
-            utterance.onerror = () => { setIsSpeaking(false); setIsPaused(false) }
-            window.speechSynthesis.speak(utterance)
-        } else {
-            // Sequential Playback for Proxy (TE, TA, MR)
-            const chunks = sanitizedText.match(/.{1,180}(?:\s|$)/g) || [sanitizedText]
-
-            const playSequentially = async (index: number) => {
-                if (index >= chunks.length) {
-                    setIsSpeaking(false)
-                    setIsPaused(false)
-                    return
-                }
-
-                const audio = new Audio(`/api/tts?text=${encodeURIComponent(chunks[index])}&lang=${lang}`)
-                    ; (window as any)._currentAudio = audio
-
-                audio.onended = () => playSequentially(index + 1)
-                audio.onerror = () => { setIsSpeaking(false); setIsPaused(false) }
-
-                try {
-                    await audio.play()
-                } catch (err) {
-                    console.error('Audio playback failed', err)
-                    setIsSpeaking(false)
-                }
-            }
-
-            await playSequentially(0)
-        }
+        const utterance = new SpeechSynthesisUtterance(sanitizedText)
+        utterance.lang = targetLang
+        utterance.onend = () => { setIsSpeaking(false); setIsPaused(false) }
+        utterance.onerror = () => { setIsSpeaking(false); setIsPaused(false) }
+        window.speechSynthesis.speak(utterance)
     }, [])
 
     const pause = useCallback(() => {

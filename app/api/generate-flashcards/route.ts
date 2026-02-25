@@ -37,7 +37,6 @@ export async function POST(req: Request) {
         })
 
         const content = chatCompletion.choices[0].message.content || '{}'
-        console.log('Groq Response Content:', content)
 
         try {
             return NextResponse.json(JSON.parse(content))

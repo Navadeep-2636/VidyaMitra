@@ -26,7 +26,7 @@ export function Navbar({ locale }: { locale: string }) {
     const t = useTranslations('nav')
     const router = useRouter()
     const path = usePathname()
-    const { user, signOut } = useSupabaseUser()
+    const { user, signOut, supabase } = useSupabaseUser()
     const [mobileOpen, setMobileOpen] = useState(false)
     const [langOpen, setLangOpen] = useState(false)
     const [profileOpen, setProfileOpen] = useState(false)
@@ -36,15 +36,20 @@ export function Navbar({ locale }: { locale: string }) {
     const [activityData, setActivityData] = useState<any[]>([])
 
     const fetchActivity = useCallback(async () => {
-        if (!user) return
+        if (!user || !supabase) return
         try {
-            const res = await fetch('/api/activity')
-            const data = await res.json()
-            if (!data.error) setActivityData(data)
+            const { data, error } = await supabase
+                .from('user_activity')
+                .select('date, count')
+                .eq('user_id', user.id)
+                .order('date', { ascending: true })
+
+            if (error) throw error
+            if (data) setActivityData(data)
         } catch (err) {
             console.error('Fetch activity error:', err)
         }
-    }, [user])
+    }, [user, supabase])
 
     useEffect(() => {
         if (user) fetchActivity()

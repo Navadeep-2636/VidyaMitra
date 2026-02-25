@@ -35,6 +35,7 @@ export function ChatWidget() {
     const [isLoading, setIsLoading] = useState(false)
     const [isListening, setIsListening] = useState(false)
     const [isWakeWordActive, setIsWakeWordActive] = useState(false)
+    const [isMicBlocked, setIsMicBlocked] = useState(false)
 
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -62,7 +63,6 @@ export function ChatWidget() {
         wakeWordRec.onresult = (event: any) => {
             const last = event.results.length - 1
             const text = event.results[last][0].transcript.toLowerCase()
-            console.log('Wake word check:', text)
             if (text.includes('vidyamitra') || text.includes('vidya mitra')) {
                 setIsOpen(true)
                 setIsMinimized(false)
@@ -70,13 +70,24 @@ export function ChatWidget() {
             }
         }
 
-        wakeWordRec.onend = () => {
-            if (isWakeWordActive) wakeWordRec.start()
+        wakeWordRec.onerror = (event: any) => {
+            console.error('Wake word error:', event.error)
+            if (event.error === 'not-allowed') {
+                setIsMicBlocked(true)
+                setIsWakeWordActive(false)
+                wakeWordRec.stop()
+            }
         }
 
         wakeWordRecognitionRef.current = wakeWordRec
-        wakeWordRec.start()
-        setIsWakeWordActive(true)
+        try {
+            wakeWordRec.start()
+            setIsWakeWordActive(true)
+        } catch (err) {
+            console.error('Failed to start wake word rec:', err)
+            setIsMicBlocked(true)
+            setIsWakeWordActive(false)
+        }
 
         return () => {
             wakeWordRec.stop()
@@ -128,7 +139,13 @@ export function ChatWidget() {
             handleSend(transcript)
         }
         recognition.onend = () => setIsListening(false)
-        recognition.onerror = () => setIsListening(false)
+        recognition.onerror = (event: any) => {
+            setIsListening(false)
+            if (event.error === 'not-allowed') {
+                setIsMicBlocked(true)
+                alert('Microphone access is blocked. Please enable it in your browser settings to use voice features.')
+            }
+        }
 
         recognitionRef.current = recognition
         recognition.start()
@@ -230,9 +247,14 @@ export function ChatWidget() {
                                 <div>
                                     <div className="flex items-center gap-2">
                                         <h3 className="font-bold text-sm">{t('header')}</h3>
-                                        {isWakeWordActive && (
+                                        {isWakeWordActive && !isMicBlocked && (
                                             <span className="flex items-center gap-1 text-[8px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full border border-green-500/30">
                                                 <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse" /> {t('listening')}
+                                            </span>
+                                        )}
+                                        {isMicBlocked && (
+                                            <span className="flex items-center gap-1 text-[8px] bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded-full border border-red-500/30">
+                                                <X size={8} /> Voice Disabled
                                             </span>
                                         )}
                                     </div>
@@ -354,9 +376,11 @@ export function ChatWidget() {
                                                 onClick={startListening}
                                                 className={clsx(
                                                     "p-2 rounded-xl transition-all",
-                                                    isListening ? "bg-red-500 text-white animate-pulse" : "bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-300 hover:text-primary"
+                                                    isListening ? "bg-red-500 text-white animate-pulse" : "bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-300 hover:text-primary",
+                                                    isMicBlocked && "opacity-50 cursor-not-allowed"
                                                 )}
-                                                title={t('micTitle')}
+                                                title={isMicBlocked ? "Microphone blocked" : t('micTitle')}
+                                                disabled={isMicBlocked}
                                             >
                                                 <Mic size={18} />
                                             </button>

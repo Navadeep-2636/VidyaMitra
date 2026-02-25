@@ -17,7 +17,7 @@ export default function FlashcardsPage() {
     const locale = params.locale as string
     const t = useTranslations('dashboard')
     const { speak, stop, isSpeaking } = useNarrator()
-    const { user } = useSupabaseUser()
+    const { user, supabase } = useSupabaseUser()
 
     const [topic, setTopic] = useState('')
     const [isGenerating, setIsGenerating] = useState(false)
@@ -29,13 +29,26 @@ export default function FlashcardsPage() {
 
     // Activity logging
     const logActivity = async (count: number) => {
-        if (!user) return
+        if (!user || !supabase) return
         try {
-            await fetch('/api/activity', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ count })
-            })
+            const date = new Date().toISOString().split('T')[0]
+            const { data, error } = await supabase
+                .from('user_activity')
+                .select('*')
+                .eq('user_id', user.id)
+                .eq('date', date)
+                .single()
+
+            if (error && error.code !== 'PGRST116') throw error
+
+            if (data) {
+                await supabase.from('user_activity')
+                    .update({ count: data.count + count })
+                    .eq('id', data.id)
+            } else {
+                await supabase.from('user_activity')
+                    .insert({ user_id: user.id, date, count })
+            }
         } catch (err) {
             console.error('Log activity error:', err)
         }
