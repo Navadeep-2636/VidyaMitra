@@ -3,13 +3,16 @@ import Groq from 'groq-sdk'
 
 export const dynamic = 'force-dynamic'
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
-
-const LOCALE_NAMES: Record<string, string> = {
-    en: 'English', hi: 'Hindi', te: 'Telugu', ta: 'Tamil', mr: 'Marathi',
-}
-
 export async function POST(req: NextRequest) {
+    if (!process.env.GROQ_API_KEY) {
+        return NextResponse.json({ error: 'AI service not configured: GROQ_API_KEY is missing' }, { status: 500 })
+    }
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
+
+    const LOCALE_NAMES: Record<string, string> = {
+        en: 'English', hi: 'Hindi', te: 'Telugu', ta: 'Tamil', mr: 'Marathi',
+    }
+
     try {
         const { topic, language = 'en', count = 6, simplifiedMode = false } = await req.json()
         if (!topic) return NextResponse.json({ error: 'Topic is required' }, { status: 400 })

@@ -4,9 +4,10 @@ import Groq from 'groq-sdk'
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: Request) {
-    const groq = new Groq({
-        apiKey: process.env.GROQ_API_KEY || 'MISSING_KEY'
-    })
+    if (!process.env.GROQ_API_KEY) {
+        return NextResponse.json({ error: 'AI service not configured: GROQ_API_KEY is missing' }, { status: 500 })
+    }
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
     try {
         const { topic, language, difficulty, accessibilityMode } = await req.json()
 

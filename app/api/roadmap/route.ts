@@ -8,7 +8,10 @@ const LOCALE_NAMES: Record<string, string> = {
 }
 
 export async function POST(req: NextRequest) {
-    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY || 'MISSING_KEY' })
+    if (!process.env.GROQ_API_KEY) {
+        return NextResponse.json({ error: 'AI service not configured: GROQ_API_KEY is missing' }, { status: 500 })
+    }
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
     try {
         const { subject, grade = '10', language = 'en' } = await req.json()
         if (!subject) return NextResponse.json({ error: 'Subject required' }, { status: 400 })
