@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OpenDyslexic Font (loaded from CDN in layout for accessibility) */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --color-primary: #1E3A8A;
+    --color-secondary: #374151;
+    --color-accent: #F59E0B;
+    --color-surface: #F8FAFC;
+    --color-dark: #111827;
+  }
+
+  .dark {
+    --color-primary: #3B82F6;
+    --color-secondary: #94A3B8;
+    --color-surface: #0F172A;
+    --color-dark: #F1F5F9;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-surface text-dark font-sans antialiased;
+    transition: font-family 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* Dyslexia mode */
+  body.dyslexic-font {
+    font-family: 'OpenDyslexic', sans-serif !important;
+  }
+
+  body.dyslexic-font h1,
+  body.dyslexic-font h2,
+  body.dyslexic-font h3,
+  body.dyslexic-font p,
+  body.dyslexic-font span,
+  body.dyslexic-font button {
+    font-family: 'OpenDyslexic', sans-serif !important;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    word-spacing: 0.1em;
+  }
+
+  /* High Contrast Mode */
+  body.high-contrast {
+    @apply bg-black text-white;
+    --color-surface: #000000;
+    --color-dark: #ffffff;
+  }
+
+  body.high-contrast .card-surface {
+    @apply bg-gray-900 border border-gray-600;
+  }
+
+  body.high-contrast .btn-primary {
+    @apply bg-yellow-400 text-black hover:bg-yellow-300;
+  }
+}
+
+@layer components {
+
+  /* Cards */
+  .card-surface {
+    @apply bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-gray-100 dark:border-slate-700;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-primary text-white font-semibold px-6 py-3 rounded-xl hover:bg-primary-600 active:scale-95 transition-all duration-200 ease-in-out flex items-center gap-2 justify-center;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary font-semibold px-6 py-3 rounded-xl border border-primary hover:bg-primary hover:text-white transition-all duration-200 ease-in-out flex items-center gap-2 justify-center;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white font-semibold px-6 py-3 rounded-xl hover:bg-yellow-500 active:scale-95 transition-all duration-200 ease-in-out;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200;
+  }
+
+  /* Navigation Link */
+  .nav-link {
+    @apply text-secondary hover:text-primary dark:text-slate-300 dark:hover:text-blue-400 font-medium text-sm transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-slate-800;
+  }
+
+  /* Slide Cards */
+  .slide-card {
+    @apply card-surface p-6 animate-slide-up;
+  }
+
+  /* Section headings */
+  .section-title {
+    @apply text-3xl font-bold font-heading text-dark tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-secondary text-lg mt-2;
+  }
+
+  /* Skeleton loaders */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    @apply rounded-lg;
+  }
+
+  /* Language tag badges */
+  .lang-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary border border-primary-100 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800/50;
+  }
+
+  .badge-primary {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 dark:bg-blue-900/40 text-primary dark:text-blue-200 border border-primary-200 dark:border-blue-800/50;
+  }
+
+  .badge-secondary {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-2 rounded-full bg-gray-100 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-500;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .glass-surface {
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    @apply dark:bg-slate-900/80 dark:border-slate-700/50;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .preserve-3d {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .perspective-2000 {
+    -webkit-perspective: 2000px;
+    perspective: 2000px;
+  }
+}

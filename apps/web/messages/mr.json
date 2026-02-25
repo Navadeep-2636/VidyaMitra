@@ -1,0 +1,110 @@
+{
+    "nav": {
+        "home": "होम",
+        "dashboard": "डॅशबोर्ड",
+        "flashcards": "फ्लॅशकार्ड्स",
+        "roadmap": "लेर्निंग रोडमॅप",
+        "careers": "करिअर",
+        "settings": "सेटिंग्ज",
+        "login": "लॉगइन",
+        "logout": "लॉगआउट"
+    },
+    "hero": {
+        "title": "तुमच्या भाषेत बोलणारे AI",
+        "subtitle": "सर्वांसाठी समावेशक शिक्षण",
+        "description": "तुमच्या मातृभाषेत AI-आधारित स्लाइड्स, फ्लॅशकार्ड्स आणि व्हॉइस नॅरेशन तयार करा.",
+        "cta": "शिकण्यास सुरुवात करा"
+    },
+    "dashboard": {
+        "title": "लेर्निंग डॅशबोर्ड",
+        "welcome": "आज तुम्हाला नवीन काय शिकायचे आहे?",
+        "generator": "AI स्लाइड जनरेटर",
+        "topicLabel": "तुम्हाला काय शिकायचे आहे?",
+        "topicPlaceholder": "उदा. प्रकाशसंश्लेषण, भारतीय इतिहास...",
+        "difficultyLabel": "काठिण्य पातळी",
+        "difficultyOptions": {
+            "beginner": "सुरवात (सोपे शब्द)",
+            "intermediate": "मध्यम (प्रमाणित)",
+            "advanced": "प्रगत (सविस्तर)"
+        },
+        "generateBtn": "स्लाइड्स तयार करा",
+        "generating": "तयार होत आहे...",
+        "emptyState": "अद्याप कोणतीही सामग्री नाही",
+        "emptyStateDesc": "तुमची वैयक्तिकृत AI अभ्यास सामग्री तयार करण्यासाठी डावीकडे एक विषय प्रविष्ट करा.",
+        "generatingContent": "AI विचार करत आहे...",
+        "generationSteps": "विषयाचे संशोधन, स्लाइड्सची रचना आणि स्थानिकीकरण.",
+        "inputModePrompt": "AI प्रॉम्प्ट",
+        "inputModePDF": "PDF अपलोड करा",
+        "inputModeText": "मजकूर पेस्ट करा",
+        "pastePlaceholder": "तुमचा सविस्तर मजकूर येथे पेस्ट करा...",
+        "uploadPlaceholder": "एक PDF फाइल निवडा",
+        "extracting": "मजकूर काढत आहे...",
+        "invalidPDF": "कृपया एक वैध PDF फाइल अपलोड करा.",
+        "emptyText": "कृपया काही मजकूर प्रविष्ट करा किंवा PDF अपलोड करा.",
+        "pdfExtracted": "PDF मजकूर यशस्वीरित्या काढला!",
+        "pdfPassword": "ही PDF पासवर्ड संरक्षित आहे. कृपया असुरक्षित फाईल अपलोड करा.",
+        "pdfNoText": "या PDF मधून मजकूर काढता आला नाही. ती स्कॅन केलेली प्रतिमा असू शकते."
+    },
+    "buttons": {
+        "generate": "स्लाइड तयार करा",
+        "download": "डाउनलोड करा",
+        "tryFree": "विनामूल्य प्रयत्न करा",
+        "learnMore": "अधिक जाणून घ्या",
+        "save": "सेव्ह",
+        "cancel": "रद्द",
+        "continue": "सुरू ठेवा"
+    },
+    "accessibility": {
+        "title": "सुगमता",
+        "dyslexicFont": "डिस्लेక్స్िया-फ्रेंडली फॉन्ट",
+        "highContrast": "उच्च कॉन्ट्रास्ट",
+        "simplifiedLanguage": "सोपी भाषा",
+        "textSize": "मजकूर आकार"
+    },
+    "features": {
+        "multilingualAI": "बहुभाषिक एआय",
+        "multilingualAIDesc": "५ भारतीय भाषांमध्ये स्लाइड्स आणि नॅरेशन",
+        "voiceNarration": "व्हॉइस नॅरेशन",
+        "voiceNarrationDesc": "तुमच्या भाषेत बोलणारे प्रादेशिक टीटीएस",
+        "accessibility": "सुगमता",
+        "accessibilityDesc": "डिस्लेक्सिया फॉन्ट, उच्च कॉन्ट्रास्ट, सोपी मोड",
+        "progress": "जतन केलेली प्रगती",
+        "progressDesc": "सर्व उपकरणांवर जतन करण्यासाठी Google सह लॉगिन करा",
+        "roadmap": "स्मार्ट रोडमॅप",
+        "roadmapDesc": "विषय आणि बोर्डानुसार एआई-क्यूरेट केलेले लर्निंग पाथ.",
+        "instant": "त्वरीत निर्मिती",
+        "instantDesc": "Groq-सक्षम एआई. सेकंदात स्लाइड्स तयार."
+    },
+    "home": {
+        "whyTitle": "VidyaMitra का?",
+        "whySubtitle": "प्रोडक्शन-ग्रेड, बहुभाषिक, सुलभ शिक्षण.",
+        "readyTitle": "स्मार्ट पद्धतीने शिकण्यासाठी तयार आहात का?",
+        "readySubtitle": "आजच तुमच्या भाषेत एआई स्लाइड्स तयार करण्यास सुरुवात करा.",
+        "footer": "© 2026 VidyaMitra. भारतासाठी बनवलेले. Groq AI द्वारे समर्थित."
+    },
+    "auth": {
+        "loginWithGoogle": "Google सह लॉगिन",
+        "loginTitle": "VidyaMitra मध्ये साइन इन करा",
+        "loginSubtitle": "तुमची प्रगती जतन करा आणि शिकण्याचा इतिहास पहा",
+        "logoutSuccess": "यशस्वीरित्या लॉगआउट झाले"
+    },
+    "errors": {
+        "generateFailed": "स्लाईड्स तयार करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+        "loginFailed": "लॉगिन अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+        "networkError": "नेटवर्क त्रुटी. तुमचे कनेक्शन तपासा."
+    },
+    "chat": {
+        "header": "VidyaMitra AI",
+        "subHeader": "नेहमी आपल्या मदतीसाठी",
+        "listening": "ऐकत आहे...",
+        "welcomeTitle": "नमस्कार! मी VidyaMitra AI आहे",
+        "welcomeDesc": "\"Hey VidyaMitra\" म्हणून पहा किंवा खालील मायक्रोफोन वापरा.",
+        "micTitle": "व्हॉइस शोध",
+        "inputPlaceholder": "काहीही विचारा...",
+        "voiceListening": "ऐकत आहे...",
+        "play": "सुरू करा",
+        "pause": "थांबवा",
+        "stop": "बंद करा",
+        "clear": "चॅट साफ करा"
+    }
+}

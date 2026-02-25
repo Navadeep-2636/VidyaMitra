@@ -1,0 +1,110 @@
+{
+    "nav": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "flashcards": "Flashcards",
+        "roadmap": "Learning Roadmap",
+        "careers": "Careers",
+        "settings": "Settings",
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "hero": {
+        "title": "AI That Speaks Your Language",
+        "subtitle": "Inclusive Learning for Everyone",
+        "description": "Generate AI-powered slides, flashcards, and voice narration in your native language. Powered by Groq AI.",
+        "cta": "Start Learning"
+    },
+    "buttons": {
+        "generate": "Generate Slides",
+        "download": "Download PPT",
+        "tryFree": "Try for Free",
+        "learnMore": "Learn More",
+        "save": "Save",
+        "cancel": "Cancel",
+        "continue": "Continue"
+    },
+    "dashboard": {
+        "title": "Learning Dashboard",
+        "welcome": "Ready to master a new topic today?",
+        "generator": "AI Slide Generator",
+        "topicLabel": "What do you want to learn?",
+        "topicPlaceholder": "e.g. Quantum Physics, Indian History, Biology...",
+        "difficultyLabel": "Difficulty Level",
+        "difficultyOptions": {
+            "beginner": "Beginner (Simple words)",
+            "intermediate": "Intermediate (Standard)",
+            "advanced": "Advanced (Detailed)"
+        },
+        "generateBtn": "Generate Slides",
+        "generating": "Crafting...",
+        "emptyState": "No content yet",
+        "emptyStateDesc": "Enter a topic on the left to start generating your personalized AI study material.",
+        "generatingContent": "AI is thinking...",
+        "generationSteps": "Researching topic, structuring slides, and localizing content.",
+        "inputModePrompt": "AI Prompt",
+        "inputModePDF": "Upload PDF",
+        "inputModeText": "Paste Text",
+        "pastePlaceholder": "Paste your detailed text here...",
+        "uploadPlaceholder": "Select a PDF file",
+        "extracting": "Extracting text...",
+        "invalidPDF": "Please upload a valid PDF file.",
+        "emptyText": "Please enter some text or upload a PDF.",
+        "pdfExtracted": "PDF text extracted successfully!",
+        "pdfPassword": "This PDF is password protected. Please upload an unprotected file.",
+        "pdfNoText": "No text could be extracted from this PDF. It might be a scanned image."
+    },
+    "accessibility": {
+        "title": "Accessibility",
+        "dyslexicFont": "Dyslexic-Friendly Font",
+        "highContrast": "High Contrast",
+        "simplifiedLanguage": "Simplified Language",
+        "textSize": "Text Size"
+    },
+    "features": {
+        "multilingualAI": "Multilingual AI",
+        "multilingualAIDesc": "Slides and narration in 5 Indian languages",
+        "voiceNarration": "Voice Narration",
+        "voiceNarrationDesc": "Regional TTS that speaks your language",
+        "accessibility": "Accessibility",
+        "accessibilityDesc": "Dyslexic fonts, high contrast, simplified mode",
+        "progress": "Saved Progress",
+        "progressDesc": "Login with Google to save across devices",
+        "roadmap": "Smart Roadmap",
+        "roadmapDesc": "AI-curated learning paths per subject and board.",
+        "instant": "Instant Generation",
+        "instantDesc": "Groq-powered AI. Slides ready in seconds."
+    },
+    "home": {
+        "whyTitle": "Why VidyaMitra?",
+        "whySubtitle": "Production-grade, multilingual, accessible learning.",
+        "readyTitle": "Ready to learn smarter?",
+        "readySubtitle": "Start generating AI slides in your language today.",
+        "footer": "© 2026 VidyaMitra. Built for India. Powered by Groq AI."
+    },
+    "auth": {
+        "loginWithGoogle": "Login with Google",
+        "loginTitle": "Sign in to VidyaMitra",
+        "loginSubtitle": "Save your progress and access learning history",
+        "logoutSuccess": "Logged out successfully"
+    },
+    "errors": {
+        "generateFailed": "Failed to generate slides. Please try again.",
+        "loginFailed": "Login failed. Please try again.",
+        "networkError": "Network error. Check your connection."
+    },
+    "chat": {
+        "header": "VidyaMitra AI",
+        "subHeader": "Always here to help",
+        "listening": "Listening...",
+        "welcomeTitle": "Hello! I'm VidyaMitra AI",
+        "welcomeDesc": "Try saying \"Hey VidyaMitra\" or use the microphone below.",
+        "micTitle": "Voice Search",
+        "inputPlaceholder": "Ask anything...",
+        "voiceListening": "Listening...",
+        "play": "Play",
+        "pause": "Pause",
+        "stop": "Stop",
+        "clear": "Clear Chat"
+    }
+}
