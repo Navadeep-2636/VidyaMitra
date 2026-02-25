@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
 
+export const dynamic = 'force-dynamic'
+
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY })
 
 const LOCALE_NAMES: Record<string, string> = {

@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
 
+export const dynamic = 'force-dynamic'
+
 const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY
+  apiKey: process.env.GROQ_API_KEY || 'MISSING_KEY'
 })
 
 export async function POST(req: Request) {
