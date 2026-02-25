@@ -66,7 +66,8 @@ export default function RoadmapPage() {
         setIsGenerating(true)
         setRoadmap(null)
         try {
-            const response = await fetch('/api/generate-roadmap', {
+            const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || ''
+            const response = await fetch(`${backendUrl}/api/generate-roadmap`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ profile, language: locale })

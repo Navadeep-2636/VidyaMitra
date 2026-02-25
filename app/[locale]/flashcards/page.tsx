@@ -60,7 +60,8 @@ export default function FlashcardsPage() {
         setError(null)
         setCards([])
         try {
-            const response = await fetch('/api/generate-flashcards', {
+            const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || ''
+            const response = await fetch(`${backendUrl}/api/generate-flashcards`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ topic, language: locale })

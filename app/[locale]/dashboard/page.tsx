@@ -94,7 +94,8 @@ export default function DashboardPage() {
         setIsTranslationModalOpen(true)
         setTranslatedText(null)
         try {
-            const response = await fetch('/api/translate', {
+            const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || ''
+            const response = await fetch(`${backendUrl}/api/translate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text, targetLang: lang })
@@ -175,7 +176,8 @@ export default function DashboardPage() {
         setIsGenerating(true)
         setError(null)
         try {
-            const response = await fetch('/api/generate', {
+            const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || ''
+            const response = await fetch(`${backendUrl}/api/generate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
